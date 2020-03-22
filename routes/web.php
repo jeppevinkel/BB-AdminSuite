@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/accounts', 'HomeController@show')->name('accounts')->middleware('verified');
+
+//Route::get('/accounts', function () {
+//    return view('server_accounts.list');
+//})->middleware('auth')->middleware('verified');

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class LoginsSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class LoginsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\User::create(array('username' => 'jopo', 'email' => 'jopo@jopo.com', 'password' => 'password'));
     }
 }

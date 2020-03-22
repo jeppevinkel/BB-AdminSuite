@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Logins;
+use App\ServerAccount;
 use Illuminate\Http\Request;
 
-class LoginsController extends Controller
+class ServerAccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class LoginsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Logins $logins
+     * @param \App\ServerAccount $serverAccount
      * @return \Illuminate\Http\Response
      */
-    public function show(Logins $logins)
+    public function show(ServerAccount $serverAccount)
     {
         //
     }
@@ -52,10 +52,10 @@ class LoginsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Logins $logins
+     * @param \App\ServerAccount $serverAccount
      * @return \Illuminate\Http\Response
      */
-    public function edit(Logins $logins)
+    public function edit(ServerAccount $serverAccount)
     {
         //
     }
@@ -64,10 +64,10 @@ class LoginsController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Logins $logins
+     * @param \App\ServerAccount $serverAccount
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Logins $logins)
+    public function update(Request $request, ServerAccount $serverAccount)
     {
         //
     }
@@ -75,10 +75,10 @@ class LoginsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Logins $logins
+     * @param \App\ServerAccount $serverAccount
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Logins $logins)
+    public function destroy(ServerAccount $serverAccount)
     {
         //
     }
