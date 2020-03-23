@@ -46,4 +46,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->serverAccountMembers()->where('server_account_id', '=', $id)->firstOrFail()->serverAccount;
     }
+
+    public function getServerRole(int $id)
+    {
+        return $this->serverAccountMembers()->where('server_account_id', '=', $id)->firstOrFail()->role;
+    }
 }

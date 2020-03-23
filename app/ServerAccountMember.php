@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class ServerAccountMember extends Model
 {
+    protected $guarded = [];
+
     public function user()
     {
         return $this->belongsTo(User::class);
