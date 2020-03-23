@@ -19,4 +19,4 @@ Guidelines for code and conduct tbd.
 
 ## License
 
-License tbd.
+The Southwood-AdminSuite is released uner the [GNU General Public License](https://github.com/jeppevinkel/Southwood-AdminSuite/blob/master/LICENSE), with means all the source code is available for you to use, both commercially and otherwise, but anything you distribute will need to be under the same license, which includes releasing the source code.
