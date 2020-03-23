@@ -21,19 +21,18 @@ class Role extends Model
 
     public function hasPermission(string $permName)
     {
-        return $this;
         switch ($permName) {
             case 'ban_view':
-                return $this->permissions & self::BAN_VIEW;
+                return ($this->permissions & self::BAN_VIEW) ? true : false;
                 break;
             case 'ban_modify':
-                return $this->permissions & self::BAN_MODIFY;
+                return ($this->permissions & self::BAN_MODIFY) ? true : false;
                 break;
             case 'ban_remove':
-                return $this->permissions & self::BAN_REMOVE;
+                return ($this->permissions & self::BAN_REMOVE) ? true : false;
                 break;
             case 'ban_add':
-                return $this->permissions & self::BAN_ADD;
+                return ($this->permissions & self::BAN_ADD) ? true : false;
                 break;
             default:
                 return false;

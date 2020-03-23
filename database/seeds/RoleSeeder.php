@@ -11,17 +11,9 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        \App\Role::create(array('name' => 'admin', 'server_account_id' => 1, 'permissions' => 14));
-        \App\Role::create(array('name' => 'moderator', 'server_account_id' => 1, 'permissions' => 8));
-        \App\Role::create(array('name' => 'user', 'server_account_id' => 1, 'permissions' => 3));
-        \App\Role::create(array('name' => 'admin', 'server_account_id' => 2, 'permissions' => 14));
-        \App\Role::create(array('name' => 'moderator', 'server_account_id' => 2, 'permissions' => 8));
-        \App\Role::create(array('name' => 'user', 'server_account_id' => 2, 'permissions' => 3));
-        \App\Role::create(array('name' => 'admin', 'server_account_id' => 3, 'permissions' => 14));
-        \App\Role::create(array('name' => 'moderator', 'server_account_id' => 3, 'permissions' => 8));
-        \App\Role::create(array('name' => 'user', 'server_account_id' => 3, 'permissions' => 3));
-        \App\Role::create(array('name' => 'admin', 'server_account_id' => 4, 'permissions' => 14));
-        \App\Role::create(array('name' => 'moderator', 'server_account_id' => 4, 'permissions' => 8));
-        \App\Role::create(array('name' => 'user', 'server_account_id' => 4, 'permissions' => 3));
+        \App\Role::create(array('name' => 'owner', 'permissions' => 15));
+        \App\Role::create(array('name' => 'admin', 'permissions' => 11));
+        \App\Role::create(array('name' => 'moderator', 'permissions' => 9));
+        \App\Role::create(array('name' => 'user', 'permissions' => 1));
     }
 }
