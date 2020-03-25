@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class ServerAccount extends Model
 {
@@ -12,20 +13,43 @@ class ServerAccount extends Model
     {
         $user = User::find($userId);
 
-        $serverAccount = new ServerAccount([
-            'name' => $name,
-            'plan_level' => $planLevel,
-        ]);
-        $serverAccount->save();
+        if (!$user) {
+            throw new \Exception('Specified user id doesn\'t exist!');
+        }
 
-        $serverAccountMember = new ServerAccountMember([
-            'role_id' => 1,
-            'server_account_id' => $serverAccount->id,
-            'user_id' => $userId,
-        ]);
-        $serverAccountMember->save();
+        DB::transaction();
 
-        $user->serverAccountMembers()->attach($serverAccountMember);
+        try {
+            $serverAccount = new ServerAccount([
+                'name' => $name,
+                'plan_level' => $planLevel,
+            ]);
+            $serverAccount->save();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        try {
+            $serverAccountMember = new ServerAccountMember([
+                'role_id' => 1,
+                'server_account_id' => $serverAccount->id,
+                'user_id' => $userId,
+            ]);
+            $serverAccountMember->save();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        try {
+            $user->serverAccountMembers()->save($serverAccountMember);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        DB::commit();
 
         return $serverAccount;
     }

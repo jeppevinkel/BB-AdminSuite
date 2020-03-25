@@ -13,15 +13,15 @@ class ServerAccountMemberUser extends Migration
      */
     public function up()
     {
-        Schema::create('server_account_member_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('server_account_member_id');
-            $table->unsignedBigInteger('user_id');
-
-            $table->unique('server_account_member_id', 'user_id');
-
-            $table->foreign('server_account_member_id')->references('id')->on('server_account_members')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-        });
+//        Schema::create('server_account_member_user', function (Blueprint $table) {
+//            $table->unsignedBigInteger('server_account_member_id');
+//            $table->unsignedBigInteger('user_id');
+//
+//            $table->unique('server_account_member_id', 'user_id');
+//
+//            $table->foreign('server_account_member_id')->references('id')->on('server_account_members')->onDelete('cascade')->onUpdate('cascade');
+//            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+//        });
     }
 
     /**
@@ -31,6 +31,6 @@ class ServerAccountMemberUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('server_account_member_user');
+//        Schema::dropIfExists('server_account_member_user');
     }
 }

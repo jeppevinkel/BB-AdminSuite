@@ -39,7 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function serverAccountMembers()
     {
-        return $this->belongsToMany(ServerAccountMember::class);
+        return $this->hasMany(ServerAccountMember::class);
     }
 
     public function getServerAccount(int $id)
