@@ -3,7 +3,7 @@
 <p align="center">
 <a href="https://github.com/jeppevinkel/Southwood-AdminSuite"><img src="https://github.com/jeppevinkel/Southwood-AdminSuite/workflows/CI/badge.svg" alt="Unit Test Status" /></a>
 <a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public." /></a>
-<a href="https://discord.gg/9SWkAAt"><img src="https://img.shields.io/discord/673521655716511744.svg" alt="Discord Chat" /></a>
+<a href="https://discord.gg/9SWkAAt"><img src="https://img.shields.io/discord/673521655716511744.svg?logo=discord" alt="Discord Chat" /></a>
 </p>
 
 ## About AdminSuite
