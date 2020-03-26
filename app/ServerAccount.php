@@ -2,12 +2,45 @@
 
 namespace App;
 
+use http\Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Keygen;
 
 class ServerAccount extends Model
 {
     protected $guarded = [];
+
+    public function users()
+    {
+        //return $this->serverAccountMembers();
+        throw new \Exception('Not implemented yet!');
+    }
+
+    public function serverAccountMembers()
+    {
+        return $this->hasMany(ServerAccountMember::class);
+    }
+
+    public function createServerToken()
+    {
+        DB::beginTransaction();
+        try {
+            $serverToken = new ServerToken([
+                'token' => Keygen::alphanum(8)->generate(),
+                'server_account_id' => $this->id,
+                'expiry_date' => date('Y-m-d H:i:s', time() + 7200),
+            ]);
+            $serverToken->save();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        DB::commit();
+
+        return $serverToken;
+    }
 
     public static function createNew(int $userId, string $name, int $planLevel)
     {
@@ -17,7 +50,7 @@ class ServerAccount extends Model
             throw new \Exception('Specified user id doesn\'t exist!');
         }
 
-        DB::transaction();
+        DB::beginTransaction();
 
         try {
             $serverAccount = new ServerAccount([
@@ -52,10 +85,5 @@ class ServerAccount extends Model
         DB::commit();
 
         return $serverAccount;
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
     }
 }
