@@ -22,11 +22,13 @@ class CreateServersTable extends Migration
             $table->text('info');
             $table->string('pastebin', 16);
             $table->enum('status', ['offline', 'online', 'waiting']);
-            $table->smallInteger('players');
-            $table->smallInteger('maxPlayers');
+            $table->smallInteger('cur_players');
+            $table->smallInteger('max_players');
             $table->string('server_version', 16);
+            $table->string('exiled_version', 16);
             $table->unsignedSmallInteger('options');
 
+            $table->unique(['ip', 'port'], 'address');
             $table->foreign('server_account_id')->references('id')->on('server_accounts')->onDelete('set null')->onUpdate('cascade');
         });
     }

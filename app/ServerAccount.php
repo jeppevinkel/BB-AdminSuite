@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use http\Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +11,11 @@ use Keygen;
 class ServerAccount extends Model
 {
     protected $guarded = [];
+
+    public function servers()
+    {
+        return $this->hasMany(Server::class);
+    }
 
     public function users()
     {
@@ -29,7 +35,8 @@ class ServerAccount extends Model
             $serverToken = new ServerToken([
                 'token' => Keygen::alphanum(8)->generate(),
                 'server_account_id' => $this->id,
-                'expiry_date' => date('Y-m-d H:i:s', time() + 7200),
+                //'expiry_date' => date('Y-m-d H:i:s', time() + 7200),
+                'expiry_date' => Carbon::now()->addHours(2),
             ]);
             $serverToken->save();
         } catch (\Exception $e) {
