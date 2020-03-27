@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:server_api')->group(function () {
+    Route::get('/servers', 'API\ServerController@index')->name('api.servers');
+    Route::post('/servers', 'API\ServerController@store')->name('api.servers.store');
+    Route::get('/servers/{server}', 'API\ServerController@show')->name('api.servers.show');
+});

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ServerSeeder extends Seeder
 {
@@ -12,6 +13,7 @@ class ServerSeeder extends Seeder
     public function run()
     {
         \App\Server::create(array(
+            'api_token' => Str::random(60),
             'ip' => '192.168.0.1',
             'port' => '7777',
             'info' => 'some bunch of base64 shit',

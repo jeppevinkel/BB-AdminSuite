@@ -15,6 +15,7 @@ class CreateServersTable extends Migration
     {
         Schema::create('servers', function (Blueprint $table) {
             $table->id();
+            $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->foreignId('server_account_id')->nullable();
             $table->timestamps();
             $table->ipAddress('ip');

@@ -117,6 +117,8 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'port' => 'The :attribute must be a valid network port.',
+    'version' => 'The :attribute must be a valid semantic version.',
 
     /*
     |--------------------------------------------------------------------------
