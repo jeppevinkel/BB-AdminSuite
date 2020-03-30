@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Server;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -94,6 +95,7 @@ class ServerController extends Controller
             $jsonResponse = [
                 'message' => 'Server successfully added.',
                 'api_token' => $apiToken,
+                'server_id' => $server->id,
             ];
         }
         else
@@ -138,11 +140,47 @@ class ServerController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Server $server
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Server $server)
     {
-        //
+        if ($server != Auth::user()) {
+            $jsonResponse = [
+                'message' => 'No access.',
+                'errors' => [
+                    'denied' => [
+                        'You can\'t modify other servers.',
+                    ],
+                ]
+            ];
+
+            return response()->json($jsonResponse);
+        }
+
+        $validatedData = $request->validate([
+            'ip' => 'required|ipv4',
+            'port' => 'required|port',
+            'info' => 'required|string',
+            'pastebin' => 'required|string',
+            'status' => 'required|string',
+            'cur_players' => 'required|numeric|integer',
+            'max_players' => 'required|numeric|integer',
+            'server_version' => 'required|string|version',
+            'exiled_version' => 'required|string|version',
+            'options' => 'required|numeric|integer|max:65535',
+        ]);
+
+        try {
+            $server->update($validatedData);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        $jsonResponse = [
+            'message' => 'Server successfully updated.',
+        ];
+
+        return response()->json($jsonResponse);
     }
 
     /**

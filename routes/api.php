@@ -18,8 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/servers', 'API\ServerController@store')->name('api.servers.store');
+
 Route::middleware('auth:server_api')->group(function () {
     Route::get('/servers', 'API\ServerController@index')->name('api.servers');
-    Route::post('/servers', 'API\ServerController@store')->name('api.servers.store');
     Route::get('/servers/{server}', 'API\ServerController@show')->name('api.servers.show');
+    Route::put('/servers/{server}', 'API\ServerController@update')->name('api.servers.update');
 });

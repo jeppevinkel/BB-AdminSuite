@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ServerAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServerAccountController extends Controller
 {
@@ -42,11 +43,15 @@ class ServerAccountController extends Controller
      * Display the specified resource.
      *
      * @param \App\ServerAccount $serverAccount
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(ServerAccount $serverAccount)
     {
-        //
+        if (Auth::user()->getServerAccount(1) == null) {
+            return view('home');
+        }
+
+        return view('server-account', ['serverAccount' => $serverAccount]);
     }
 
     /**

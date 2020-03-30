@@ -19,6 +19,7 @@ class ServerAccount extends Model
 
     public function users()
     {
+        $myUsers = [];
         //return $this->serverAccountMembers();
         throw new \Exception('Not implemented yet!');
     }

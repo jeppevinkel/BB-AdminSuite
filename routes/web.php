@@ -21,6 +21,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/accounts', 'HomeController@show')->name('accounts')->middleware('verified');
+Route::get('/accounts/{serverAccount}', 'ServerAccountController@show')->name('accounts.show')->middleware('verified');
 
 //Route::get('/accounts', function () {
 //    return view('server_accounts.list');
