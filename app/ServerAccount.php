@@ -24,6 +24,11 @@ class ServerAccount extends Model
         throw new \Exception('Not implemented yet!');
     }
 
+    public function players()
+    {
+        return $this->hasManyThrough(Player::class, Server::class);
+    }
+
     public function serverAccountMembers()
     {
         return $this->hasMany(ServerAccountMember::class);
