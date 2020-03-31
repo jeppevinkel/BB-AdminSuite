@@ -160,7 +160,7 @@
                         <!--Table Card-->
                         <div class="bg-white border-transparent rounded-lg shadow-lg">
                             <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-                                <h5 class="font-bold uppercase text-gray-600">{{ strip_tags($server->info) }}</h5>
+                                <h5 class="font-bold uppercase text-gray-600">{{ strip_tags(substr($server->info, 0, strpos($server->info, 'SM119'))) }}</h5>
                             </div>
                             <div class="p-5">
                                 <table class="w-full p-5 text-gray-700">
@@ -215,22 +215,6 @@
 
             </div>
         </div>
-    </div>
-
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-            <div class="top-right links">
-                @auth
-                    <a href="{{ url('/home') }}">Home</a>
-                @else
-                    <a href="{{ route('login') }}">Login</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
-                    @endif
-                @endauth
-            </div>
-        @endif
     </div>
 
     <script>

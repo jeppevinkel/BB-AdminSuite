@@ -10,8 +10,7 @@
     <meta name="description" content="Admin suite for SCP:SL servers running the EXILED plugin loader.">
     <meta name="keywords" content="scp,sl,exiled,southwood">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
