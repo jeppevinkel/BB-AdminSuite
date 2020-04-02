@@ -47,10 +47,6 @@ class ServerAccountController extends Controller
      */
     public function show(ServerAccount $serverAccount)
     {
-        if (Auth::user()->getServerAccount(1) == null) {
-            return view('home');
-        }
-
         return view('server-account', ['serverAccount' => $serverAccount]);
     }
 

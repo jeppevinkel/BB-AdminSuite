@@ -13,6 +13,7 @@ class Role extends Model
     CONST BAN_MODIFY = 2;
     CONST BAN_REMOVE = 4;
     CONST BAN_ADD = 8;
+    CONST SERVER_ADD = 16;
 
     public function serverAccount()
     {
@@ -33,6 +34,9 @@ class Role extends Model
                 break;
             case 'ban_add':
                 return ($this->permissions & self::BAN_ADD) ? true : false;
+                break;
+            case 'server_add':
+                return ($this->permissions & self::SERVER_ADD) ? true : false;
                 break;
             default:
                 return false;

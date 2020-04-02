@@ -4,44 +4,9 @@
 
     <div class="flex flex-col md:flex-row">
 
-        <div class="bg-gray-900 shadow-lg h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
+        <x-sidebar :server-account="$serverAccount">
 
-            <div
-                class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
-                <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
-                    <li class="mr-3 flex-1">
-                        <a href="{{ route('accounts.show', ['serverAccount' => $serverAccount]) }}"
-                           class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ request()->routeIs('accounts.show') ? 'border-blue-600' : 'border-gray-800 hover:border-pink-500' }}">
-                            <i class="fas fa-tasks pr-0 md:pr-3 {{ request()->routeIs('accounts.show') ? 'text-blue-600' : '' }}"></i><span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="mr-3 flex-1">
-                        <a href="#"
-                           class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
-                            <i class="fa fa-exclamation-circle pr-0 md:pr-3"></i><span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Warnings</span>
-                        </a>
-                    </li>
-                    <li class="mr-3 flex-1">
-                        <a href="#"
-                           class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ request()->routeIs('accounts.bans.show') ? 'border-blue-600' : 'border-gray-800 hover:border-red-500' }}">
-                            <i class="fas fa-times-circle pr-0 md:pr-3 {{ request()->routeIs('accounts.bans.show') ? 'text-blue-600' : '' }}"></i><span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Bans</span>
-                        </a>
-                    </li>
-                    <li class="mr-3 flex-1">
-                        <a href="#"
-                           class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
-                            <i class="fa fa-cog pr-0 md:pr-3"></i><span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Settings</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-
-        </div>
+        </x-sidebar>
 
         <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
 
@@ -157,54 +122,53 @@
 
             <div class="flex flex-row flex-wrap flex-grow mt-2">
 
-                @foreach($serverAccount->servers as $server)
-                    <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                        <!--Table Card-->
-                        <div class="bg-white border-transparent rounded-lg shadow-lg">
-                            <div
-                                class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 flex justify-between">
-                                <h5 class="font-bold uppercase text-gray-600">{{ strip_tags(substr($server->info, 0, strpos($server->info, 'SM119'))) }}</h5>
-                                <h6 class="font-bold uppercase text-gray-600">{{ $server->cur_players }}
-                                    /{{ $server->max_players }}</h6>
-                            </div>
-                            <div class="p-5">
-                                <table class="w-full p-5 text-gray-700">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-left text-blue-900">Name</th>
-                                        <th class="text-left text-blue-900">Team</th>
-                                        <th class="text-left text-blue-900">Rank</th>
-                                    </tr>
-                                    </thead>
+                {{--                @foreach($serverAccount->servers as $server)--}}
+                {{--                    <div class="w-full md:w-1/2 xl:w-1/3 p-3">--}}
+                {{--                        <!--Table Card-->--}}
+                {{--                        <div class="bg-white border-transparent rounded-lg shadow-lg">--}}
+                {{--                            <div--}}
+                {{--                                class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 flex justify-between">--}}
+                {{--                                <h5 class="font-bold uppercase text-gray-600">{{ strip_tags(substr($server->info, 0, strpos($server->info, 'SM119'))) }}</h5>--}}
+                {{--                                <h6 class="font-bold uppercase text-gray-600">{{ $server->cur_players }}/{{ $server->max_players }}</h6>--}}
+                {{--                            </div>--}}
+                {{--                            <div class="p-5">--}}
+                {{--                                <table class="w-full p-5 text-gray-700">--}}
+                {{--                                    <thead>--}}
+                {{--                                    <tr>--}}
+                {{--                                        <th class="text-left text-blue-900">Name</th>--}}
+                {{--                                        <th class="text-left text-blue-900">Team</th>--}}
+                {{--                                        <th class="text-left text-blue-900">Rank</th>--}}
+                {{--                                    </tr>--}}
+                {{--                                    </thead>--}}
 
-                                    <tbody>
-                                    @foreach($server->players as $player)
-                                        <tr>
-                                            <td>{{ $player->username }}</td>
-                                            <td>MTF</td>
-                                            <td>Owner</td>
-                                        </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td>Hooman</td>
-                                        <td>CDP</td>
-                                        <td>Moderator</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Person</td>
-                                        <td>MTF</td>
-                                        <td>User</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                {{--                                    <tbody>--}}
+                {{--                                    @foreach($server->players as $player)--}}
+                {{--                                        <tr>--}}
+                {{--                                            <td>{{ $player->username }}</td>--}}
+                {{--                                            <td>MTF</td>--}}
+                {{--                                            <td>Owner</td>--}}
+                {{--                                        </tr>--}}
+                {{--                                    @endforeach--}}
+                {{--                                    <tr>--}}
+                {{--                                        <td>Hooman</td>--}}
+                {{--                                        <td>CDP</td>--}}
+                {{--                                        <td>Moderator</td>--}}
+                {{--                                    </tr>--}}
+                {{--                                    <tr>--}}
+                {{--                                        <td>Person</td>--}}
+                {{--                                        <td>MTF</td>--}}
+                {{--                                        <td>User</td>--}}
+                {{--                                    </tr>--}}
+                {{--                                    </tbody>--}}
+                {{--                                </table>--}}
 
-                                <p class="py-2"><a href="#">See More info...</a></p>
+                {{--                                <p class="py-2"><a href="#">See More info...</a></p>--}}
 
-                            </div>
-                        </div>
-                        <!--/table Card-->
-                    </div>
-                @endforeach
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                        <!--/table Card-->--}}
+                {{--                    </div>--}}
+                {{--                @endforeach--}}
 
                 @foreach($serverAccount->servers as $server)
                     <div class="w-full md:w-1/2 xl:w-1/3 p-3">
@@ -235,6 +199,51 @@
                     </div>
                 @endforeach
 
+                @foreach($serverAccount->activeServerTokens() as $serverToken)
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                        <!--Template Card-->
+                        <div class="bg-white border-transparent rounded-lg shadow-lg">
+                            <div
+                                class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 flex justify-between">
+                                <h5 class="font-bold uppercase text-gray-600">Server Token</h5>
+                            </div>
+                            <div class="p-5">
+                                <div>
+                                    <p class="inline-block align-middle align-text-middle">Type the following into your
+                                        server console <span
+                                            class="p-2 bg-gray-300 rounded align-text-middle">sw setup {{ $serverToken->token }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Template Card-->
+                    </div>
+                @endforeach
+
+                @if(Auth::user()->getServerRole($serverAccount->id)->hasPermission('server_add'))
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                        <!--Template Card-->
+                        <div class="bg-white border-transparent rounded-lg shadow-lg">
+                            <div
+                                class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 flex justify-between">
+                                <h5 class="font-bold uppercase text-gray-600">Add new</h5>
+                            </div>
+                            <div class="p-5">
+                                <div>
+                                    <form method="POST"
+                                          action="{{ route('accounts.tokens.store', ['serverAccount' => $serverAccount]) }}">
+                                        @csrf
+                                        <button
+                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            Add new server
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Template Card-->
+                    </div>
+                @endif
 
             </div>
         </div>

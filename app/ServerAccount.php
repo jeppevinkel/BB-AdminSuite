@@ -17,6 +17,11 @@ class ServerAccount extends Model
         return $this->hasMany(Server::class);
     }
 
+    public function serverTokens()
+    {
+        return $this->hasMany(ServerToken::class);
+    }
+
     public function users()
     {
         $myUsers = [];
@@ -32,6 +37,21 @@ class ServerAccount extends Model
     public function serverAccountMembers()
     {
         return $this->hasMany(ServerAccountMember::class);
+    }
+
+    public function bans()
+    {
+        return $this->hasMany(Moderation::class)->where('moderation_type', '=', 'ban');
+    }
+
+    public function warnings()
+    {
+        return $this->hasMany(Moderation::class)->where('moderation_type', '=', 'warning');
+    }
+
+    public function activeServerTokens()
+    {
+        return ServerToken::all()->where('expiry_date', '>=', Carbon::now())->sortBy('created_at');
     }
 
     public function createServerToken()
