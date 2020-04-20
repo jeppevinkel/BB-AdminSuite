@@ -9,13 +9,15 @@
 
                     <div class="card-body">
                         @if (session('status'))
-                            <div class="alert alert-success" role="alert">
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                 role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
 
                         @foreach(Auth::user()->serverAccountMembers as $serverAccountMember)
-                            {{ $serverAccountMember->serverAccount->name }} | {{ $serverAccountMember->role->name }}
+                            <a href="{{ route('accounts.show', ['serverAccount' => $serverAccountMember->serverAccount]) }}">{{ $serverAccountMember->serverAccount->name }}
+                                | {{ $serverAccountMember->role->name }}</a>
                             <br>
                         @endforeach
                     </div>

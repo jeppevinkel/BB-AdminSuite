@@ -14,7 +14,6 @@ class PlayerSeeder extends Seeder
         \App\Player::create(array(
             'id' => 2312345314,
             'id_type' => 'steam',
-            'server_id' => 1,
             'username' => 'Jopo',
         ));
     }

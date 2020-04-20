@@ -8,8 +8,8 @@ class Player extends Model
 {
     protected $guarded = [];
 
-    public function server()
+    public function servers()
     {
-        return $this->belongsTo(Server::class);
+        return $this->belongsToMany(Server::class);
     }
 }

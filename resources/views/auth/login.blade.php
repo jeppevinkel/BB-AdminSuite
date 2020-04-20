@@ -18,7 +18,7 @@
                                autocomplete="email" autofocus>
                         @error('email')
                         <span class="" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <strong class="text-red-500">{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
@@ -27,7 +27,7 @@
                                placeholder="{{ __('Password') }}" required autocomplete="current-password">
                         @error('password')
                         <span class="" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <strong class="text-red-500">{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>

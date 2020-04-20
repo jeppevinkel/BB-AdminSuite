@@ -36,7 +36,7 @@ class Server extends Model implements AuthenticatableContract
 
     public function players()
     {
-        return $this->hasMany(Player::class);
+        return $this->belongsToMany(Player::class);
     }
 
     public function linkServer(string $token)
