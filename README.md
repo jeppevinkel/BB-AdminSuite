@@ -8,7 +8,7 @@
 
 ## About AdminSuite
 
-Southwood-AdminSuite is a full suite of all the tools needed for effective administration of an SCP: Secret Laboratory server. The admin suite intents to come with solutions for all the time consuming tasks related to server administration, such as, keeping track of banned players, keeping track of warnings, control staff permissions, etc.
+bb-works AdminSuite is a full suite of all the tools needed for effective administration of an SCP: Secret Laboratory server. The admin suite intents to come with solutions for all the time consuming tasks related to server administration, such as, keeping track of banned players, keeping track of warnings, control staff permissions, etc.
 
 ## Getting started
 
@@ -20,4 +20,4 @@ Guidelines for code and conduct tbd.
 
 ## License
 
-The Southwood-AdminSuite is released uner the [GNU General Public License](https://github.com/jeppevinkel/Southwood-AdminSuite/blob/master/LICENSE), with means all the source code is available for you to use, both commercially and otherwise, but anything you distribute will need to be under the same license, which includes releasing the source code.
+The bb-works AdminSuite is released under the [GNU General Public License](https://github.com/jeppevinkel/Southwood-AdminSuite/blob/master/LICENSE), with means all the source code is available for you to use, both commercially and otherwise, but anything you distribute will need to be under the same license, which includes releasing the source code.

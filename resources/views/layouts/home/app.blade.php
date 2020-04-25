@@ -8,7 +8,7 @@
 
     <meta name="author" content="Jeppe Vinkel Beier">
     <meta name="description" content="Admin suite for SCP:SL servers running the EXILED plugin loader.">
-    <meta name="keywords" content="scp,sl,exiled,southwood">
+    <meta name="keywords" content="scp,sl,exiled,bb-works">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -88,7 +88,7 @@
 </head>
 <body class="bg-gray-900 font-sans leading-normal tracking-normal mt-12">
 
-@include('layouts.dashboard.partials.header')
+@include('layouts.home.partials.header')
 
 @yield('content')
 

@@ -20,7 +20,8 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-Route::get('/accounts', 'HomeController@show')->name('accounts')->middleware('verified');
+Route::get('/accounts', 'HomeController@show')->name('accounts.index')->middleware('verified');
+Route::post('/accounts', 'ServerAccountController@store')->name('accounts.store')->middleware('verified');
 Route::group(['middleware' => ['member.check']], function () {
     Route::get('/accounts/{serverAccount}', 'ServerAccountController@show')->name('accounts.show')->middleware('verified');
     Route::post('/accounts/{serverAccount}/tokens', 'ServerTokenController@store')->name('accounts.tokens.store')->middleware('verified');

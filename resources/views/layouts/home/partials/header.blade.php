@@ -5,10 +5,6 @@
             <a href="{{ route('accounts.index') }}">
                 <span class="text-xl pl-2">Home</span>
             </a>
-            <span class="text-xl pl-2">/</span>
-            <a href="{{ route('accounts.show', ['serverAccount' => $serverAccount]) }}">
-                <span class="text-xl pl-2 text-gray-400">{{ $serverAccount->name }}</span>
-            </a>
         </div>
 
         <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
@@ -27,12 +23,6 @@
 
         <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
             <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
-                {{--                <li class="flex-1 md:flex-none md:mr-3">--}}
-                {{--                    <a class="inline-block py-2 px-4 text-white no-underline" href="#">Active</a>--}}
-                {{--                </li>--}}
-                {{--                <li class="flex-1 md:flex-none md:mr-3">--}}
-                {{--                    <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">link</a>--}}
-                {{--                </li>--}}
                 <li class="flex-1 md:flex-none md:mr-3">
                     <div class="relative inline-block">
                         <button onclick="toggleDD('myDropdown')" class="drop-button text-white focus:outline-none"><span

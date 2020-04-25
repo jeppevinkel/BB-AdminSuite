@@ -24,9 +24,7 @@ class ServerAccount extends Model
 
     public function users()
     {
-        $myUsers = [];
-        //return $this->serverAccountMembers();
-        throw new \Exception('Not implemented yet!');
+        return $this->belongsToMany(User::class, 'server_account_members');
     }
 
     public function players()
