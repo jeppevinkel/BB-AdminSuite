@@ -72,28 +72,24 @@
                 {{--                    </div>--}}
                 {{--                @endforeach--}}
 
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Template Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-lg">
-                        <div
-                            class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 flex justify-between">
-                            <h5 class="font-bold uppercase text-gray-600">Add new</h5>
-                        </div>
-                        <div class="p-5">
-                            <div>
-                                <form method="POST"
-                                      action="{{ route('accounts.store') }}">
-                                    @csrf
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                        <!--Template Card-->
+                        <div class="bg-white border-transparent rounded-lg shadow-lg">
+                            <div
+                                class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 flex justify-between">
+                                <h5 class="font-bold uppercase text-gray-600">Add new</h5>
+                            </div>
+                            <div class="p-5">
+                                <div>
                                     <button
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                        Add new server account
+                                        <a href="{{ route('accounts.create') }}">Add new server account</a>
                                     </button>
-                                </form>
+                                </div>
                             </div>
                         </div>
+                        <!--/Template Card-->
                     </div>
-                    <!--/Template Card-->
-                </div>
 
             </div>
         </div>

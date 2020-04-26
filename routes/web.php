@@ -21,6 +21,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/accounts', 'HomeController@show')->name('accounts.index')->middleware('verified');
+Route::get('/accounts/create', 'ServerAccountController@create')->name('accounts.create')->middleware('verified');
 Route::post('/accounts', 'ServerAccountController@store')->name('accounts.store')->middleware('verified');
 Route::group(['middleware' => ['member.check']], function () {
     Route::get('/accounts/{serverAccount}', 'ServerAccountController@show')->name('accounts.show')->middleware('verified');
