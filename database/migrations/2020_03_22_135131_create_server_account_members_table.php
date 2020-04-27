@@ -20,7 +20,7 @@ class CreateServerAccountMembersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->unique('server_account_id', 'user_id');
+            $table->unique(['server_account_id', 'user_id']);
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict')->onUpdate('cascade');
             $table->foreign('server_account_id')->references('id')->on('server_accounts')->onDelete('cascade')->onUpdate('cascade');

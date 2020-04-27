@@ -7,6 +7,7 @@ use http\Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Keygen;
+use phpDocumentor\Reflection\Types\Array_;
 
 class ServerAccount extends Model
 {
@@ -29,7 +30,11 @@ class ServerAccount extends Model
 
     public function players()
     {
-        return $this->hasManyThrough(Player::class, Server::class);
+        $myPlayers = Array();
+        foreach ($this->servers as $server) {
+            $myPlayers = array_merge($myPlayers, $server->players());
+        }
+        return $myPlayers;
     }
 
     public function serverAccountMembers()

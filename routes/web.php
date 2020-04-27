@@ -28,6 +28,8 @@ Route::group(['middleware' => ['member.check']], function () {
     Route::post('/accounts/{serverAccount}/tokens', 'ServerTokenController@store')->name('accounts.tokens.store')->middleware('verified');
     Route::get('/accounts/{serverAccount}/bans', 'ModerationController@index')->name('accounts.bans.index')->middleware('verified')->defaults('type', 0);
     Route::get('/accounts/{serverAccount}/warnings', 'ModerationController@index')->name('accounts.warnings.index')->middleware('verified')->defaults('type', 1);
+    Route::get('/accounts/{serverAccount}/members', 'ServerAccountMemberController@index')->name('accounts.members.index')->middleware('verified');
+    Route::put('/accounts/{serverAccount}/members/{serverAccountMember}', 'ServerAccountMemberController@update')->name('accounts.members.update')->middleware('verified');
 });
 
 //Route::get('/accounts', function () {

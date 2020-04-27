@@ -25,7 +25,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Online Players</h5>
-                                <h3 class="font-bold text-3xl">{{ $serverAccount->players->count() }} <span
+                                <h3 class="font-bold text-3xl">{{ count($serverAccount->players()) }} <span
                                         class="text-green-500"><i
                                             class="fas fa-caret-up"></i></span></h3>
                             </div>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Total Players</h5>
-                                <h3 class="font-bold text-3xl">{{ $serverAccount->players->count() }} <span
+                                <h3 class="font-bold text-3xl">{{ count($serverAccount->players()) }} <span
                                         class="text-orange-500"><i
                                             class="fas fa-exchange-alt"></i></span></h3>
                             </div>

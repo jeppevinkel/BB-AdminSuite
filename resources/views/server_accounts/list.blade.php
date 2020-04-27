@@ -39,7 +39,7 @@
                                             class="font-bold uppercase">Servers:</span> {{ $serverAccountMember->serverAccount->servers->count() }}
                                     </p>
                                     <p><span
-                                            class="font-bold uppercase">Online Players:</span> {{ $serverAccountMember->serverAccount->players->count() }}
+                                            class="font-bold uppercase">Online Players:</span> {{ count($serverAccountMember->serverAccount->players()) }}
                                     </p>
                                     <p><span
                                             class="font-bold uppercase">Members:</span> {{ $serverAccountMember->serverAccount->users->count() }}
