@@ -18,7 +18,7 @@ class CheckMember
         $serverAccount = $request->route()->parameter('serverAccount');
 
         if (!$request->user()->getServerAccount($serverAccount->id)) {
-            return redirect('home');
+            return redirect('accounts');
         }
 
         return $next($request);

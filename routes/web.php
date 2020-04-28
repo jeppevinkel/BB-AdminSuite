@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', function () {
+    return redirect('login');
+})->name('home')->middleware('verified');
+
 Route::get('/accounts', 'HomeController@show')->name('accounts.index')->middleware('verified');
 Route::get('/accounts/create', 'ServerAccountController@create')->name('accounts.create')->middleware('verified');
 Route::post('/accounts', 'ServerAccountController@store')->name('accounts.store')->middleware('verified');
