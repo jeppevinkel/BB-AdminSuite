@@ -54,7 +54,7 @@ class ServerAccount extends Model
 
     public function activeServerTokens()
     {
-        return ServerToken::all()->where('expiry_date', '>=', Carbon::now())->sortBy('created_at');
+        return $this->serverTokens->where('expiry_date', '>=', Carbon::now())->sortBy('created_at');
     }
 
     public function createServerToken()
