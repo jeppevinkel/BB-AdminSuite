@@ -30,9 +30,9 @@ class ServerAccount extends Model
 
     public function players()
     {
-        $myPlayers = Array();
+        $myPlayers = collect();
         foreach ($this->servers as $server) {
-            $myPlayers = array_merge($myPlayers, $server->players());
+            $myPlayers = $myPlayers->merge($server->players);
         }
         return $myPlayers;
     }
