@@ -11,7 +11,7 @@
         <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
 
             <div class="bg-blue-800 p-2 shadow text-xl text-white">
-                <h3 class="font-bold pl-2">Dashboard</h3>
+                <h3 class="font-bold pl-2">Warnings</h3>
             </div>
 
             <div class="flex flex-row flex-wrap flex-grow mt-2">

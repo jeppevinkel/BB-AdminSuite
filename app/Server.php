@@ -36,7 +36,22 @@ class Server extends Model implements AuthenticatableContract
 
     public function players()
     {
-        return $this->belongsToMany(Player::class);
+        return $this->belongsToMany(Player::class)->withTimestamps();
+    }
+
+    public function serverAccount()
+    {
+        return $this->belongsTo(ServerAccount::class);
+    }
+
+    public function newPlayers()
+    {
+        return $this->players()->wherePivot('created_at', '>', Carbon::today());
+    }
+
+    public function onlinePlayers()
+    {
+        return $this->players()->wherePivot('updated_at', '>', Carbon::now()->subMinutes(2));
     }
 
     public function linkServer(string $token)

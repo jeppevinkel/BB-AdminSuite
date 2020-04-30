@@ -23,6 +23,11 @@ class ServerAccount extends Model
         return $this->hasMany(ServerToken::class);
     }
 
+    public function ranks()
+    {
+        return $this->hasMany(Rank::class);
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'server_account_members');
@@ -30,9 +35,28 @@ class ServerAccount extends Model
 
     public function players()
     {
+        //$myPlayers = Player::all()->intersect($this->servers);
         $myPlayers = collect();
         foreach ($this->servers as $server) {
             $myPlayers = $myPlayers->merge($server->players);
+        }
+        return $myPlayers;
+    }
+
+    public function newPlayers()
+    {
+        $myPlayers = collect();
+        foreach ($this->servers as $server) {
+            $myPlayers = $myPlayers->merge($server->newPlayers);
+        }
+        return $myPlayers;
+    }
+
+    public function onlinePlayers()
+    {
+        $myPlayers = collect();
+        foreach ($this->servers as $server) {
+            $myPlayers = $myPlayers->merge($server->onlinePlayers);
         }
         return $myPlayers;
     }

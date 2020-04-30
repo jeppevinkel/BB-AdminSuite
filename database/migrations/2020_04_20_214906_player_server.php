@@ -15,11 +15,13 @@ class PlayerServer extends Migration
     {
         Schema::create('player_server', function (Blueprint $table) {
             $table->unsignedBigInteger('player_id');
+            $table->enum('player_id_type', ['steam', 'discord']);
             $table->unsignedBigInteger('server_id');
+            $table->timestamps();
 
-            $table->unique('player_id', 'server_id');
+            $table->unique(['player_id', 'player_id_type', 'server_id'], 'id');
 
-            $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign(['player_id', 'player_id_type'])->references(['id', 'id_type'])->on('players')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('server_id')->references('id')->on('servers')->onDelete('cascade')->onUpdate('cascade');
         });
     }

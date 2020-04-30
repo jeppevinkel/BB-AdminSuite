@@ -34,6 +34,8 @@ Route::group(['middleware' => ['member.check']], function () {
     Route::get('/accounts/{serverAccount}/warnings', 'ModerationController@index')->name('accounts.warnings.index')->middleware('verified')->defaults('type', 1);
     Route::get('/accounts/{serverAccount}/members', 'ServerAccountMemberController@index')->name('accounts.members.index')->middleware('verified');
     Route::put('/accounts/{serverAccount}/members/{serverAccountMember}', 'ServerAccountMemberController@update')->name('accounts.members.update')->middleware('verified');
+    Route::get('/accounts/{serverAccount}/players', 'ServerAccountPlayerController@index')->name('accounts.players.index')->middleware('verified');
+    Route::get('/accounts/{serverAccount}/ranks', 'RankController@index')->name('accounts.ranks.index')->middleware('verified');
 });
 
 //Route::get('/accounts', function () {

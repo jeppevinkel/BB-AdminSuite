@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Player;
 use App\Server;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -62,17 +64,17 @@ class ServerController extends Controller
                 'ip' => $validatedData['ip'],
                 'port' => $validatedData['port'],
             ],
-            [
-                'info' => $validatedData['info'],
-                'pastebin' => $validatedData['pastebin'],
-                'status' => $validatedData['status'],
-                'cur_players' => $validatedData['cur_players'],
-                'max_players' => $validatedData['max_players'],
-                'server_version' => $validatedData['server_version'],
-                'exiled_version' => $validatedData['exiled_version'],
-                'options' => $validatedData['options'],
-                'api_token' => $apiToken,
-            ]);
+                [
+                    'info' => $validatedData['info'],
+                    'pastebin' => $validatedData['pastebin'],
+                    'status' => $validatedData['status'],
+                    'cur_players' => $validatedData['cur_players'],
+                    'max_players' => $validatedData['max_players'],
+                    'server_version' => $validatedData['server_version'],
+                    'exiled_version' => $validatedData['exiled_version'],
+                    'options' => $validatedData['options'],
+                    'api_token' => $apiToken,
+                ]);
         } catch (\Exception $e) {
             DB::rollBack();
             throw $e;
@@ -168,10 +170,43 @@ class ServerController extends Controller
             'server_version' => 'required|string|version',
             'exiled_version' => 'required|string|version',
             'options' => 'required|numeric|integer|max:65535',
+            'newPlayers' => 'sometimes|required|JSON',
         ]);
 
         try {
-            $server->update($validatedData);
+            $server->update([
+                'ip' => $validatedData['ip'],
+                'port' => $validatedData['port'],
+                'info' => $validatedData['info'],
+                'pastebin' => $validatedData['pastebin'],
+                'status' => $validatedData['status'],
+                'cur_players' => $validatedData['cur_players'],
+                'max_players' => $validatedData['max_players'],
+                'server_version' => $validatedData['server_version'],
+                'exiled_version' => $validatedData['exiled_version'],
+                'options' => $validatedData['options'],
+            ]);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        try {
+            if ($validatedData['newPlayers']) {
+                foreach (json_decode($validatedData['newPlayers'], true) as $playerData) {
+                    $player = Player::firstOrCreate([
+                        'id' => $playerData['id'],
+                        'id_type' => $playerData['id_type'],
+                    ],
+                        [
+                            'username' => $playerData['username'],
+                        ]);
+                    if (!$player->servers->contains($server)) {
+                        $player->servers()->attach($server);
+                    } else {
+                        $player->servers()->updateExistingPivot($server, ['updated_at' => Carbon::now()]);
+                    }
+                }
+            }
         } catch (\Exception $e) {
             throw $e;
         }
@@ -179,6 +214,9 @@ class ServerController extends Controller
         $jsonResponse = [
             'message' => 'Server successfully updated.',
         ];
+
+        $jsonResponse['members'] = [];
+        $jsonResponse['ranks'] = [];
 
         return response()->json($jsonResponse);
     }

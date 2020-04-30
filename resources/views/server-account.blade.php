@@ -25,7 +25,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Online Players</h5>
-                                <h3 class="font-bold text-3xl">{{ count($serverAccount->players()) }} <span
+                                <h3 class="font-bold text-3xl">{{ count($serverAccount->onlinePlayers()) }} <span
                                         class="text-green-500"><i
                                             class="fas fa-caret-up"></i></span></h3>
                             </div>
@@ -61,7 +61,8 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">New Players</h5>
-                                <h3 class="font-bold text-3xl">2 <span class="text-yellow-600"><i
+                                <h3 class="font-bold text-3xl">{{ count($serverAccount->newPlayers()) }} <span
+                                        class="text-yellow-600"><i
                                             class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
@@ -137,7 +138,7 @@
                 {{--                                    <tr>--}}
                 {{--                                        <th class="text-left text-blue-900">Name</th>--}}
                 {{--                                        <th class="text-left text-blue-900">Team</th>--}}
-                {{--                                        <th class="text-left text-blue-900">Rank</th>--}}
+                {{--                                        <th class="text-left text-blue-900">RankController</th>--}}
                 {{--                                    </tr>--}}
                 {{--                                    </thead>--}}
 

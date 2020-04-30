@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +32,18 @@ class AppServiceProvider extends ServiceProvider
         });
         Validator::extend('version', function ($attribute, $value, $parameters, $validator) {
             return preg_match('/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/m', $value);
+        });
+
+        Collection::macro('paginate', function (int $perPage = 15, $page = null, $options = []) {
+            /** @var Collection $this */
+            $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+            return new LengthAwarePaginator(
+                $this->forPage($page, $perPage)->values(),
+                $this->count(),
+                $perPage,
+                $page,
+                $options
+            );
         });
     }
 }
