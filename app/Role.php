@@ -22,8 +22,18 @@ class Role extends Model
     CONST WARN_ADD = 128;
 
     // Members
-    CONST MEMBER_ROLE_SET = 248;
-    CONST MEMBER_ROLE_SET_UNLIMITED = 496;
+    CONST MEMBER_VIEW = 256;
+    CONST MEMBER_ROLE_SET = 512;
+    CONST MEMBER_ROLE_SET_UNLIMITED = 1024;
+
+    // Ranks
+    CONST RANK_VIEW = 2048;
+
+    // Players
+    CONST PLAYER_VIEW = 4096;
+
+    // Settings
+    CONST SETTINGS_VIEW = 8192;
 
     CONST SERVER_ADD = 100000;
 
@@ -62,11 +72,23 @@ class Role extends Model
             case 'server_add':
                 return ($this->permissions & self::SERVER_ADD) ? true : false;
                 break;
+            case 'member_view':
+                return ($this->permissions & self::MEMBER_VIEW) ? true : false;
+                break;
             case 'member_role_set':
                 return ($this->permissions & self::MEMBER_ROLE_SET) ? true : false;
                 break;
             case 'member_role_set_unlimited':
                 return ($this->permissions & self::MEMBER_ROLE_SET_UNLIMITED) ? true : false;
+                break;
+            case 'rank_view':
+                return ($this->permissions & self::RANK_VIEW) ? true : false;
+                break;
+            case 'player_view':
+                return ($this->permissions & self::PLAYER_VIEW) ? true : false;
+                break;
+            case 'settings_view':
+                return ($this->permissions & self::SETTINGS_VIEW) ? true : false;
                 break;
             default:
                 return false;

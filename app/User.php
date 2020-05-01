@@ -53,4 +53,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->serverAccountMembers()->where('server_account_id', '=', $id)->firstOrFail()->role;
     }
+
+    public function hasPermission(int $id, string $permName)
+    {
+        return $this->serverAccountMembers()->where('server_account_id', '=', $id)->firstOrFail()->role->hasPermission($permName);
+    }
 }

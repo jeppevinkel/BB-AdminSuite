@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Rank;
 use App\ServerAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RankController extends Controller
 {
@@ -22,11 +23,15 @@ class RankController extends Controller
      * Display a listing of the resource.
      *
      * @param ServerAccount $serverAccount
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function index(ServerAccount $serverAccount)
     {
-        return view('server-account-ranks', ['serverAccount' => $serverAccount]);
+        if (Auth::user()->hasPermission($serverAccount->id, 'rank_view')) {
+            return view('server-account-ranks', ['serverAccount' => $serverAccount]);
+        } else {
+            return redirect(route('accounts.show', ['serverAccount' => $serverAccount]));
+        }
     }
 
     /**
@@ -56,7 +61,7 @@ class RankController extends Controller
      * @param \App\Rank $rank
      * @return \Illuminate\Http\Response
      */
-    public function show(RankController $rank)
+    public function show(Rank $rank)
     {
         //
     }
@@ -67,7 +72,7 @@ class RankController extends Controller
      * @param \App\Rank $rank
      * @return \Illuminate\Http\Response
      */
-    public function edit(RankController $rank)
+    public function edit(Rank $rank)
     {
         //
     }
@@ -79,7 +84,7 @@ class RankController extends Controller
      * @param \App\Rank $rank
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RankController $rank)
+    public function update(Request $request, Rank $rank)
     {
         //
     }
@@ -90,7 +95,7 @@ class RankController extends Controller
      * @param \App\Rank $rank
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RankController $rank)
+    public function destroy(Rank $rank)
     {
         //
     }

@@ -80,8 +80,7 @@ class ServerController extends Controller
             throw $e;
         }
 
-        if ($validatedData['server_token'] && $server->wasRecentlyCreated)
-        {
+        if (array_key_exists('server_token', $validatedData) && $server->wasRecentlyCreated) {
             try {
                 $server->linkServer($validatedData['server_token']);
             } catch (\Exception $e) {
@@ -191,7 +190,7 @@ class ServerController extends Controller
         }
 
         try {
-            if ($validatedData['newPlayers']) {
+            if (array_key_exists('newPlayers', $validatedData)) {
                 foreach (json_decode($validatedData['newPlayers'], true) as $playerData) {
                     $player = Player::firstOrCreate([
                         'id' => $playerData['id'],
