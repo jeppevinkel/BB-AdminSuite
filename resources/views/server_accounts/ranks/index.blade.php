@@ -24,13 +24,18 @@
                             <div
                                 class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 flex justify-between">
                                 <h5 class="font-bold uppercase text-gray-600">{{ $rank->badge_text }}</h5>
-                                <h6 class="font-bold uppercase text-gray-600">{{ $rank->badge_color }}</h6>
+                                <h6 class="font-bold uppercase text-gray-600"><a
+                                        href="{{ route('accounts.ranks.edit', ['serverAccount' => $serverAccount, 'rank' => $rank]) }}">Edit</a>
+                                </h6>
+                                <h6 class="font-bold uppercase text-gray-600">Remove</h6>
                             </div>
                             <div class="p-5">
                                 <div>
                                     <p><span class="font-bold uppercase">Rank name:</span> {{ $rank->rank_name }}</p>
+                                    <p><span class="font-bold uppercase">Badge color:</span> {{ $rank->badge_color }}
+                                    </p>
                                     <p><span
-                                            class="font-bold uppercase">Hidden by default:</span> {{ $rank->hidden_by_default }}
+                                            class="font-bold uppercase">Hidden by default:</span> {{ $rank->hidden_by_default ? 'True' : 'False' }}
                                     </p>
                                     <p><span class="font-bold uppercase">Kick power:</span> {{ $rank->kick_power }}
                                     </p>
@@ -54,14 +59,11 @@
                             </div>
                             <div class="p-5">
                                 <div>
-                                    <form method="POST"
-                                          action="">
-                                        @csrf
-                                        <button
-                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                            Add new rank
-                                        </button>
-                                    </form>
+                                    <button
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        <a href="{{ route('accounts.ranks.create', ['serverAccount' => $serverAccount]) }}">Add
+                                            new rank</a>
+                                    </button>
                                 </div>
                             </div>
                         </div>

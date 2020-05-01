@@ -28,6 +28,9 @@ class Role extends Model
 
     // Ranks
     CONST RANK_VIEW = 2048;
+    CONST RANK_MODIFY = 32768;
+    CONST RANK_REMOVE = 65536;
+    CONST RANK_ADD = 16384;
 
     // Players
     CONST PLAYER_VIEW = 4096;
@@ -83,6 +86,15 @@ class Role extends Model
                 break;
             case 'rank_view':
                 return ($this->permissions & self::RANK_VIEW) ? true : false;
+                break;
+            case 'rank_modify':
+                return ($this->permissions & self::RANK_MODIFY) ? true : false;
+                break;
+            case 'rank_remove':
+                return ($this->permissions & self::RANK_REMOVE) ? true : false;
+                break;
+            case 'rank_add':
+                return ($this->permissions & self::RANK_ADD) ? true : false;
                 break;
             case 'player_view':
                 return ($this->permissions & self::PLAYER_VIEW) ? true : false;

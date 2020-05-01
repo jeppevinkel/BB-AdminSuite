@@ -27,6 +27,7 @@ class CreateRanksTable extends Migration
             $table->boolean('shared')->default(false);
             $table->timestamps();
 
+            $table->unique(['server_account_id', 'rank_name']);
             $table->foreign('server_account_id')->references('id')->on('server_accounts')->onDelete('cascade')->onUpdate('cascade');
         });
     }

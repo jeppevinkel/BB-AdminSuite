@@ -36,6 +36,10 @@ Route::group(['middleware' => ['member.check']], function () {
     Route::put('/accounts/{serverAccount}/members/{serverAccountMember}', 'ServerAccountMemberController@update')->name('accounts.members.update')->middleware('verified');
     Route::get('/accounts/{serverAccount}/players', 'ServerAccountPlayerController@index')->name('accounts.players.index')->middleware('verified');
     Route::get('/accounts/{serverAccount}/ranks', 'RankController@index')->name('accounts.ranks.index')->middleware('verified');
+    Route::get('/accounts/{serverAccount}/ranks/create', 'RankController@create')->name('accounts.ranks.create')->middleware('verified');
+    Route::get('/accounts/{serverAccount}/ranks/{rank}/edit', 'RankController@edit')->name('accounts.ranks.edit')->middleware('verified');
+    Route::put('/accounts/{serverAccount}/ranks/{rank}/update', 'RankController@update')->name('accounts.ranks.update')->middleware('verified');
+    Route::post('/accounts/{serverAccount}/ranks', 'RankController@store')->name('accounts.ranks.store')->middleware('verified');
 });
 
 //Route::get('/accounts', function () {
