@@ -146,7 +146,7 @@ class RankController extends Controller
         if (Auth::user()->hasPermission($serverAccount->id, 'rank_modify')) {
             return view('server_accounts.ranks.edit', ['serverAccount' => $serverAccount, 'rank' => $rank]);
         } else {
-            return redirect(route('accounts.ranks.index', ['serverAccount' => $serverAccount]));
+            return redirect()->route('accounts.ranks.index', ['serverAccount' => $serverAccount]);
         }
     }
 
@@ -155,12 +155,12 @@ class RankController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Rank $rank
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, ServerAccount $serverAccount, Rank $rank)
     {
         if (!Auth::user()->hasPermission($serverAccount->id, 'rank_modify')) {
-            return redirect(route('accounts.ranks.index', ['serverAccount' => $serverAccount]));
+            return redirect()->route('accounts.ranks.index', ['serverAccount' => $serverAccount]);
         }
 
         $validatedData = $request->validate([
@@ -221,7 +221,7 @@ class RankController extends Controller
 
         DB::commit();
 
-        return redirect(route('accounts.ranks.index', ['serverAccount' => $serverAccount]));
+        return redirect()->route('accounts.ranks.index', ['serverAccount' => $serverAccount]);
     }
 
     /**
@@ -230,8 +230,13 @@ class RankController extends Controller
      * @param \App\Rank $rank
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rank $rank)
+    public function destroy(ServerAccount $serverAccount, Rank $rank)
     {
-        //
+        if (!Auth::user()->hasPermission($serverAccount->id, 'rank_remove')) {
+            return back();
+        }
+        $rank->delete();
+
+        return response()->redirectToRoute('accounts.ranks.index', ['serverAccount' => $serverAccount]);
     }
 }
