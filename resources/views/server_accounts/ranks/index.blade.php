@@ -24,10 +24,21 @@
                             <div
                                 class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 flex justify-between">
                                 <h5 class="font-bold uppercase text-gray-600">{{ $rank->badge_text }}</h5>
-                                <h6 class="font-bold uppercase text-gray-600"><a
-                                        href="{{ route('accounts.ranks.edit', ['serverAccount' => $serverAccount, 'rank' => $rank]) }}">Edit</a>
-                                </h6>
-                                <h6 class="font-bold uppercase text-gray-600">Remove</h6>
+                                @if(\Illuminate\Support\Facades\Auth::user()->getServerRole($serverAccount->id)->canEditRanks())
+                                    <div class="flex justify-between">
+                                        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission($serverAccount->id, 'rank_modify'))
+                                            <h6 class="font-bold uppercase text-blue-400"><a
+                                                    href="{{ route('accounts.ranks.edit', ['serverAccount' => $serverAccount, 'rank' => $rank]) }}">Edit</a>
+                                            </h6>
+                                        @endif
+                                        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission($serverAccount->id, 'rank_modify') && \Illuminate\Support\Facades\Auth::user()->hasPermission($serverAccount->id, 'rank_remove'))
+                                            <span class="pl-2 pr-2 text-gray-600"> | </span>
+                                        @endif
+                                        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission($serverAccount->id, 'rank_remove'))
+                                            <h6 class="font-bold uppercase text-red-400">Remove</h6>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                             <div class="p-5">
                                 <div>

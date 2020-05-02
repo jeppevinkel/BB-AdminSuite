@@ -12,14 +12,4 @@ class Rank extends Model
     {
         return $this->belongsTo(ServerAccount::class);
     }
-
-    public function getColors()
-    {
-        return collect([
-            [
-                'value' => ''
-            ],
-        ]);
-        return $this->permissions & 2 ** 0;
-    }
 }

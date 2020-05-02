@@ -45,6 +45,11 @@ class Role extends Model
         return $this->hasPermission('member_role_set') || $this->hasPermission('member_role_set_unlimited');
     }
 
+    public function canEditRanks()
+    {
+        return $this->hasPermission('rank_modify') || $this->hasPermission('rank_remove');
+    }
+
     public function hasPermission(string $permName)
     {
         switch ($permName) {
