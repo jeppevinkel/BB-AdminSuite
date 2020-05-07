@@ -1,4 +1,4 @@
-<p align="center"><img src="https://southwoodstudios.com/images/logo.png" width="400"></p>
+<p align="center"><img src="https://southwoodstudios.com/images/logo2.png" width="400"></p>
 
 <p align="center">
 <a href="https://github.com/jeppevinkel/Southwood-AdminSuite"><img src="https://github.com/jeppevinkel/Southwood-AdminSuite/workflows/CI/badge.svg" alt="Unit Test Status" /></a>
