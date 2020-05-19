@@ -202,7 +202,7 @@ class ServerController extends Controller
                     if (!$player->servers->contains($server)) {
                         $player->servers()->attach($server);
                     } else {
-                        $player->servers()->updateExistingPivot($server, ['updated_at' => Carbon::now()]);
+                        $player->servers->find($server)->pivot->touch();
                     }
                 }
             }
