@@ -17,6 +17,6 @@ class HomeRedirectTest extends TestCase
     {
         $response = $this->get('/home');
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/email/verify');
     }
 }
