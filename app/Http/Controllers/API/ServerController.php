@@ -214,8 +214,8 @@ class ServerController extends Controller
             'message' => 'Server successfully updated.',
         ];
 
-        $jsonResponse['members'] = [];
-        $jsonResponse['ranks'] = [];
+        $jsonResponse['members'] = [['id' => '76561198014809126', 'id_type' => 'steam', 'rank' => 'tsts']];
+        $jsonResponse['ranks'] = $server->serverAccount->ranks->ToArray();
 
         return response()->json($jsonResponse);
     }
